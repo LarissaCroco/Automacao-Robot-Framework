@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "932503a8-80c6-4fd8-9925-b83b1ef44ed1",
+		"name": "Weather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obter dados climáticos da cidade por nome",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1a4393b5-8593-4434-a9ae-a5c647ce3d4c",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "72e2fcc6-a526-4953-8ae0-4b0a84a1cad9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"",
+							"pm.test(\"Obter dados climáticos da cidade por nome\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"city_name\"));",
+							"});",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q={{city_name}}&appid={{api_key}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{city_name}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Api key inválido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e486ef32-75d7-40d4-97d2-680dc682b86a",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "71500a44-da68-4d1c-8b74-8238afb9194b",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"",
+							"});",
+							"",
+							"pm.test(\"Mensagem de erro\", function () {",
+							"    pm.response.to.have.status(\"Unauthorized\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q={{city_name}}&appid=12548ljhh",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{city_name}}"
+						},
+						{
+							"key": "appid",
+							"value": "12548ljhh"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Obter dados climáticos de uma cidade inexistente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3525395c-b28a-4759-9946-3957f7a541eb",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b694cfde-bd37-44a0-bf69-a4c1a7009ac8",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"",
+							"pm.test(\"Mensagem de erro\", function () {",
+							"    pm.response.to.have.status(\"Not Found\");",
+							"});",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?q=Cidade que não existe&appid={{api_key}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Cidade que não existe"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Obter dados climáticos da cidade por id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a504226a-70da-4ca0-8d46-8fffb53310f8",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "28e5cace-f4be-4594-8a14-f7e6098c69a0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"",
+							"pm.test(\"Obter dados climáticos da cidade por id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id.toString()).to.eql(pm.globals.get(\"city_id\"));",
+							"",
+							"});",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?id={{city_id}}&appid={{api_key}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{city_id}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Obter dados climáticos da cidade por id inválido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "80688543-976d-4bb8-a4c1-1648e353e1c6",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad01cd56-abed-44bd-9058-710f22ee6743",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"",
+							"pm.test(\"Mensagem de erro\", function () {",
+							"    pm.response.to.have.status(\"Bad Request\");",
+							"});",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?id=-100052&appid={{api_key}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "-100052"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Obter dados climáticos da cidade por coordenadas geográficas",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e6aa2106-839f-43f1-a5c9-0073dfd8185f",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "08922bfd-3259-4950-8a26-da82d81e696a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"",
+							"pm.test(\"Obter dados climáticos da cidade por coordenadas geográficas\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.coord.lon.toString()).to.eql(pm.globals.get(\"lon\"));",
+							"    pm.expect(jsonData.coord.lat.toString()).to.eql(pm.globals.get(\"lat\"));",
+							"",
+							"});",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?lat={{lat}}&lon={{lon}}&appid={{api_key}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Obter dados climáticos da cidade por coordenadas geográficas inválidas",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "403385ef-825a-4fde-b050-9d66f34fd8c1",
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bfc7d5b-8924-40e3-a420-eae1e112eee3",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"",
+							"pm.test(\"Mensagem de erro\", function () {",
+							"    pm.response.to.have.status(\"Bad Request\");",
+							"});",
+							"",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?lat=&lon=&appid={{api_key}}",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": ""
+						},
+						{
+							"key": "lon",
+							"value": ""
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				},
+				"description": "Faz um get na api \"api.openweathermap.org\", busca pelo nome da cidade e verifica se o status retornou \"200\"."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "d85e976c-163a-4757-bd38-8776fc867ff6",
+			"key": "city_name",
+			"value": "São Paulo"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

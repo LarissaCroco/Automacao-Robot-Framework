@@ -1,0 +1,277 @@
+{
+	"id": "8e888c9b-4dae-46bd-988f-c3b35caf828c",
+	"name": "Weather",
+	"timestamp": "2020-10-14T16:56:13.574Z",
+	"collection_id": "932503a8-80c6-4fd8-9925-b83b1ef44ed1",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 14,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "0949077c-515e-4b1f-b51d-71d2360e9001",
+			"name": "Obter dados climáticos da cidade por nome",
+			"url": "http://api.openweathermap.org/data/2.5/weather?q=S%C3%A3o%20Paulo&appid=fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+			"time": 638,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Obter dados climáticos da cidade por nome": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Obter dados climáticos da cidade por nome": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				638
+			],
+			"allTests": [
+				{
+					"Obter dados climáticos da cidade por nome": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "52e4c83c-8eff-47e3-a984-389d95f9e3dd",
+			"name": "Api key inválido",
+			"url": "http://api.openweathermap.org/data/2.5/weather?q=S%C3%A3o%20Paulo&appid=12548ljhh",
+			"time": 281,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true,
+				"Mensagem de erro": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensagem de erro": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				281
+			],
+			"allTests": [
+				{
+					"Status code is 401": true,
+					"Mensagem de erro": true
+				}
+			]
+		},
+		{
+			"id": "44f8aca9-273c-4c45-83d5-b1caf5c171c3",
+			"name": "Obter dados climáticos de uma cidade inexistente",
+			"url": "http://api.openweathermap.org/data/2.5/weather?q=Cidade%20que%20n%C3%A3o%20existe&appid=fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+			"time": 299,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Mensagem de erro": true,
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Mensagem de erro": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				299
+			],
+			"allTests": [
+				{
+					"Mensagem de erro": true,
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "e1517458-30bb-415f-aa18-1e2e8a4f1232",
+			"name": "Obter dados climáticos da cidade por id",
+			"url": "http://api.openweathermap.org/data/2.5/weather?id=3448439&appid=fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+			"time": 386,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Obter dados climáticos da cidade por id": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Obter dados climáticos da cidade por id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				386
+			],
+			"allTests": [
+				{
+					"Obter dados climáticos da cidade por id": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "854b4a2f-9283-41b6-b34a-3bfa692aa8c6",
+			"name": "Obter dados climáticos da cidade por id inválido",
+			"url": "http://api.openweathermap.org/data/2.5/weather?id=-100052&appid=fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+			"time": 301,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Mensagem de erro": true,
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Mensagem de erro": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				301
+			],
+			"allTests": [
+				{
+					"Mensagem de erro": true,
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "0c1c3f24-8314-40d8-96e3-fe5e07d8c789",
+			"name": "Obter dados climáticos da cidade por coordenadas geográficas",
+			"url": "http://api.openweathermap.org/data/2.5/weather?lat=-23.55&lon=-46.64&appid=fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+			"time": 306,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Obter dados climáticos da cidade por coordenadas geográficas": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Obter dados climáticos da cidade por coordenadas geográficas": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				306
+			],
+			"allTests": [
+				{
+					"Obter dados climáticos da cidade por coordenadas geográficas": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e1609b67-fd5c-491f-879b-00b6a59ee4ea",
+			"name": "Obter dados climáticos da cidade por coordenadas geográficas inválidas",
+			"url": "http://api.openweathermap.org/data/2.5/weather?lat=&lon=&appid=fe6cd12a9f3e6c8b36f97b1119ccd2b8",
+			"time": 312,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Mensagem de erro": true,
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Mensagem de erro": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				312
+			],
+			"allTests": [
+				{
+					"Mensagem de erro": true,
+					"Status code is 400": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2523,
+	"collection": {
+		"requests": [
+			{
+				"id": "0949077c-515e-4b1f-b51d-71d2360e9001",
+				"method": "GET"
+			},
+			{
+				"id": "52e4c83c-8eff-47e3-a984-389d95f9e3dd",
+				"method": "GET"
+			},
+			{
+				"id": "44f8aca9-273c-4c45-83d5-b1caf5c171c3",
+				"method": "GET"
+			},
+			{
+				"id": "e1517458-30bb-415f-aa18-1e2e8a4f1232",
+				"method": "GET"
+			},
+			{
+				"id": "854b4a2f-9283-41b6-b34a-3bfa692aa8c6",
+				"method": "GET"
+			},
+			{
+				"id": "0c1c3f24-8314-40d8-96e3-fe5e07d8c789",
+				"method": "GET"
+			},
+			{
+				"id": "e1609b67-fd5c-491f-879b-00b6a59ee4ea",
+				"method": "GET"
+			}
+		]
+	}
+}
