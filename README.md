@@ -1,4 +1,4 @@
-# ze_delivery_challenge
+# QA_challenge
 
 # Requisitos para executar os testes do site:
 
