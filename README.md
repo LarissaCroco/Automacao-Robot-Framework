@@ -1,4 +1,4 @@
-# QA_challenge
+# Automacao robot framework
 
 # Requisitos para executar os testes do site:
 
